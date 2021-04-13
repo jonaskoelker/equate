@@ -1,0 +1,50 @@
+name := "equate"
+description := "assert equality; diff observed vs. expected upon failure"
+versionScheme := Some("semver-spec")
+version := "0.1.0"
+organization := "io.github.jonaskoelker"
+
+scalaVersion := "2.12.10"
+crossScalaVersions := Seq("2.11.12", scalaVersion.value)
+
+licenses := Seq(
+  "Apache-2.0" -> url("https://www.apache.org/licenses/LICENSE-2.0")
+)
+
+homepage := Some(url("https://github.com/jonaskoelker/equate"))
+startYear := Some(2021)
+
+Compile / scalaSource := baseDirectory.value / "src"
+Test / scalaSource := baseDirectory.value / "test"
+
+scalacOptions := Seq(
+  "-Xfatal-warnings",
+  "-Xlint",
+  "-feature",
+  "-unchecked",
+  "-deprecation",
+  "-encoding", "UTF-8",
+  "-Xlog-reflective-calls",
+  "-Xlog-free-types",
+  "-Xlog-free-terms",
+  "-Ywarn-dead-code",
+  "-Ywarn-numeric-widen",
+  "-Ywarn-value-discard",
+)
+
+scalacOptions in (Compile,console) ~= {_.filter(_ != "-Ywarn-unused-import")}
+scalacOptions in (Test,console) := (scalacOptions in (Compile, console)).value
+
+libraryDependencies ++= Seq(
+  "org.scalacheck" %% "scalacheck" % "1.14.1",
+  "org.scalatest" %% "scalatest" % "3.0.8",
+)
+
+developers := List(
+  Developer(
+    id = "jonaskoelker",
+    name = "Jonas Kölker",
+    email = "jonaskoelker@yahoo.com",
+    url = url("https://github.com/jonaskoelker"),
+  )
+)
