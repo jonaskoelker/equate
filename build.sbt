@@ -48,3 +48,25 @@ developers := List(
     url = url("https://github.com/jonaskoelker"),
   )
 )
+
+scmInfo := Some(
+  ScmInfo(
+    url("https://github.com/jonaskoelker/equate"),
+    "scm:git:git://github.com:jonaskoelker/equate.git",
+    "scm:git:ssh://github.com:jonaskoelker/equate.git",
+  )
+)
+
+val nexus = "https://s01.oss.sonatype.org/"
+
+pomIncludeRepository := { _ => false }
+publishTo := {
+  if (isSnapshot.value) {
+    Some("snapshots" at nexus + "content/repositories/snapshots")
+  } else {
+    Some("releases" at nexus + "service/local/staging/deploy/maven2")
+  }
+}
+publishMavenStyle := true
+
+sonatypeCredentialHost := nexus
