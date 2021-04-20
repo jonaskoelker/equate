@@ -23,12 +23,12 @@ package scalatest {
     * }}}
     */
   trait Equate {
-    class EqualityOrDiffMatcher[T](expected: T) extends Matcher[T] {
+    class EqualityOrDiffMatcher(expected: Any) extends Matcher[Any] {
 
       import _root_.equate.Algorithms.longestCommonSubsequenceEdits
       import _root_.equate.Presentation.renderReport
 
-      def apply(observed: T): MatchResult = {
+      def apply(observed: Any): MatchResult = {
         val success = observed == expected
         val (ob, ex) = (observed.toString, expected.toString)
         val errorReport = renderReport(longestCommonSubsequenceEdits(ob, ex))
@@ -40,8 +40,8 @@ package scalatest {
       * @return A matcher which asserts values to be equal or else diffs
       * observed and expected.
       */
-    def equate[T](expected: T): EqualityOrDiffMatcher[T] =
-      new EqualityOrDiffMatcher[T](expected)
+    def equate(expected: Any): EqualityOrDiffMatcher =
+      new EqualityOrDiffMatcher(expected)
   }
 
   /** Make the [[equate]] method available for importing.
