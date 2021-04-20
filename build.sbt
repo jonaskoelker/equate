@@ -1,7 +1,7 @@
 name := "equate"
 description := "assert equality; diff observed vs. expected upon failure"
 versionScheme := Some("semver-spec")
-version := "0.1.0"
+version := "0.2.0"
 organization := "io.github.jonaskoelker"
 
 scalaVersion := "2.12.10"
