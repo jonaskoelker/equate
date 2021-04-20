@@ -36,9 +36,15 @@ package scalatest {
       }
     }
 
-    /** @param expected the expected value, against which
-      * @return A matcher which asserts values to be equal or else diffs
-      * observed and expected.
+    /** Matcher which succeeds if `observed == expected`, and otherwise
+      * provides a diff between `observed.toString` and `expected.toString` in
+      * the error message. For example, use `2 + 2 should equate (4)` to
+      * assert that `2 + 2 == 4`.
+      *
+      * The diff is computed character by character.  Using this on highly
+      * different values which take up multiple screenfuls is likely slow.
+      * @param expected The expected value, against which the observed value
+      * will be compared.
       */
     def equate(expected: Any): EqualityOrDiffMatcher =
       new EqualityOrDiffMatcher(expected)
