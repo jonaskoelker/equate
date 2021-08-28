@@ -256,7 +256,7 @@ object Tests extends Properties("Equate") {
 
   property("lcs(a + xs, a + ys) = a + lcs(xs, ys)") = forAll {
     (xs: String, ys: String, a: Char) =>
-    lcs(a + xs, a + ys) ?= a +: lcs(xs, ys)
+    lcs(s"$a$xs", s"$a$ys") ?= a +: lcs(xs, ys)
   }
   // end: not a feature of the LCS but of the particular implementation
 
