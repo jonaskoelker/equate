@@ -4,8 +4,8 @@ versionScheme := Some("semver-spec")
 version := "0.2.0"
 organization := "io.github.jonaskoelker"
 
-scalaVersion := "2.12.10"
-crossScalaVersions := Seq("2.11.12", scalaVersion.value)
+scalaVersion := "2.13.6"
+crossScalaVersions := Seq("2.11.12", "2.12.10", scalaVersion.value)
 
 licenses := Seq(
   "Apache-2.0" -> url("https://www.apache.org/licenses/LICENSE-2.0")
@@ -18,7 +18,7 @@ Compile / scalaSource := baseDirectory.value / "src"
 Test / scalaSource := baseDirectory.value / "test"
 
 scalacOptions := Seq(
-  "-Xfatal-warnings",
+  //"-Xfatal-warnings",
   "-Xlint",
   "-feature",
   "-unchecked",
@@ -37,7 +37,7 @@ scalacOptions in (Test,console) := (scalacOptions in (Compile, console)).value
 
 libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.14.1",
-  "org.scalatest" %% "scalatest" % "3.0.8",
+  "org.scalatest" %% "scalatest" % "3.1.1",
 )
 
 developers := List(
