@@ -18,7 +18,6 @@ Compile / scalaSource := baseDirectory.value / "src"
 Test / scalaSource := baseDirectory.value / "test"
 
 scalacOptions := Seq(
-  //"-Xfatal-warnings",
   "-Xlint",
   "-feature",
   "-unchecked",
@@ -30,7 +29,12 @@ scalacOptions := Seq(
   "-Ywarn-dead-code",
   "-Ywarn-numeric-widen",
   "-Ywarn-value-discard",
-)
+) ++ {
+  scalaVersion.value match {
+    case "2.13.6" => Nil
+    case _ => Seq("-Xfatal-warnings")
+  }
+}
 
 scalacOptions in (Compile,console) ~= {_.filter(_ != "-Ywarn-unused-import")}
 scalacOptions in (Test,console) := (scalacOptions in (Compile, console)).value
