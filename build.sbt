@@ -41,7 +41,7 @@ scalacOptions in (Test,console) := (scalacOptions in (Compile, console)).value
 
 libraryDependencies ++= Seq(
   "org.scalacheck" %% "scalacheck" % "1.14.1",
-  "org.scalatest" %% "scalatest" % "3.1.1",
+  "org.scalatest" %% "scalatest" % "3.0.8",
 )
 
 developers := List(

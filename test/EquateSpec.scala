@@ -1,10 +1,9 @@
 package equate
 
-import org.scalatest.matchers.should.Matchers
+import org.scalatest.{Matchers, WordSpec}
 import scalatest.Equate
-import org.scalatest.wordspec.AnyWordSpec
 
-class EquateSpec extends AnyWordSpec with Matchers with Equate {
+class EquateSpec extends WordSpec with Matchers with Equate {
   "equate" should {
     "succeed" when {
       "inputs are equal" in {
